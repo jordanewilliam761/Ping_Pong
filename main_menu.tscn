@@ -1,0 +1,114 @@
+[gd_scene format=3 uid="uid://hrbmjqhvhfku"]
+
+[ext_resource type="Texture2D" uid="uid://d31okm1ncsglb" path="res://Assest/Interface/Main Menu.png" id="1_06t4h"]
+[ext_resource type="Script" uid="uid://cokixhlbsjebj" path="res://main_menu.gd" id="1_fu7sn"]
+[ext_resource type="FontFile" uid="uid://yx7chtx7bwju" path="res://Assest/Font/ChunkyDunkOutlin.ttf" id="2_7vrkn"]
+[ext_resource type="AudioStream" uid="uid://dak6gvx76ehfr" path="res://Assest/Sound/Music/Ping pong main menu.mp3" id="5_glbon"]
+[ext_resource type="AudioStream" uid="uid://dfn3prxc4ltc7" path="res://Assest/Sound/SFX/Ui press noise.wav" id="5_nlkkf"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_06t4h"]
+bg_color = Color(0.3882353, 0.60784316, 1, 1)
+border_width_bottom = 4
+border_color = Color(2.887845e-06, 0.63895345, 0.9202232, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8tlg7"]
+bg_color = Color(0.92941177, 0.105882354, 0, 1)
+border_width_bottom = 13
+border_color = Color(0.74090403, 0, 0.13914251, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+shadow_size = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7vrkn"]
+bg_color = Color(8.374751e-06, 0.23910761, 0.6427088, 1)
+shadow_size = 2
+
+[sub_resource type="Theme" id="Theme_3vjyy"]
+Button/styles/hover = SubResource("StyleBoxFlat_06t4h")
+Button/styles/normal = SubResource("StyleBoxFlat_8tlg7")
+Button/styles/pressed = SubResource("StyleBoxFlat_7vrkn")
+
+[node name="main_menu" type="Control" unique_id=2135898327]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_3vjyy")
+script = ExtResource("1_fu7sn")
+
+[node name="Main_menu" type="NinePatchRect" parent="." unique_id=217231012]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_06t4h")
+region_rect = Rect2(51.785652, 63.752388, 113.085014, 91.154594)
+
+[node name="Label" type="Label" parent="Main_menu" unique_id=1409587769]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -133.0
+offset_top = 92.0
+offset_right = 117.0
+offset_bottom = 210.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_7vrkn")
+theme_override_font_sizes/font_size = 100
+text = "PONG"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Main_menu" unique_id=1420147717]
+layout_mode = 0
+offset_left = 239.0
+offset_top = 272.0
+offset_right = 903.0
+offset_bottom = 579.0
+offset_transform_enabled = true
+theme_override_constants/separation = 40
+
+[node name="P1vP2" type="Button" parent="Main_menu/VBoxContainer" unique_id=176578215]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "P1 VS P2"
+
+[node name="pressR" type="AudioStreamPlayer2D" parent="Main_menu/VBoxContainer/P1vP2" unique_id=1377521294]
+stream = ExtResource("5_nlkkf")
+bus = &"SFX"
+area_mask = 1
+
+[node name="P1VAI" type="Button" parent="Main_menu/VBoxContainer" unique_id=573615242]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "P1 VS AI"
+
+[node name="pressR" type="AudioStreamPlayer2D" parent="Main_menu/VBoxContainer/P1VAI" unique_id=2002217722]
+stream = ExtResource("5_nlkkf")
+bus = &"SFX"
+area_mask = 1
+
+[node name="Exit" type="Button" parent="Main_menu/VBoxContainer" unique_id=1331196379]
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Exit"
+
+[node name="pressR" type="AudioStreamPlayer2D" parent="Main_menu/VBoxContainer/Exit" unique_id=1088290896]
+stream = ExtResource("5_nlkkf")
+bus = &"SFX"
+area_mask = 1
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=784828237]
+stream = ExtResource("5_glbon")
+autoplay = true
+bus = &"Music "
+
+[connection signal="pressed" from="Main_menu/VBoxContainer/P1vP2" to="." method="_on_p_1v_p_2_pressed"]
+[connection signal="pressed" from="Main_menu/VBoxContainer/P1VAI" to="." method="_on_p_1vai_pressed"]
+[connection signal="pressed" from="Main_menu/VBoxContainer/Exit" to="." method="_on_exit_pressed"]

@@ -1,0 +1,74 @@
+[gd_scene format=3 uid="uid://bj5a24aywqbsn"]
+
+[ext_resource type="Theme" uid="uid://bp3nv5d62tlhq" path="res://Assest/Interface/pong.tres" id="1_5wxig"]
+[ext_resource type="Script" uid="uid://f4v0i4eogxir" path="res://winscreen_p_2.gd" id="2_oditd"]
+[ext_resource type="FontFile" uid="uid://yx7chtx7bwju" path="res://Assest/Font/ChunkyDunkOutlin.ttf" id="3_v80sg"]
+[ext_resource type="AudioStream" uid="uid://dfn3prxc4ltc7" path="res://Assest/Sound/SFX/Ui press noise.wav" id="4_oditd"]
+
+[node name="WinscreenP2" type="Control" unique_id=1410000006]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_5wxig")
+script = ExtResource("2_oditd")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=825393029]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.34901962)
+
+[node name="Label2" type="Label" parent="ColorRect" unique_id=1009383190]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -134.0
+offset_right = 150.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.9550349, 0.054118156, 0.065204665, 1)
+theme_override_fonts/font = ExtResource("3_v80sg")
+theme_override_font_sizes/font_size = 100
+text = "P2 Win"
+
+[node name="Restart" type="Button" parent="ColorRect" unique_id=1564033013]
+layout_mode = 0
+offset_left = 424.0
+offset_top = 340.0
+offset_right = 711.0
+offset_bottom = 410.0
+theme_override_font_sizes/font_size = 50
+text = "Restart"
+
+[node name="pressR" type="AudioStreamPlayer2D" parent="ColorRect/Restart" unique_id=784596007]
+stream = ExtResource("4_oditd")
+bus = &"SFX"
+area_mask = 1
+
+[node name="Exit" type="Button" parent="ColorRect" unique_id=858478856]
+layout_mode = 0
+offset_left = 424.0
+offset_top = 425.0
+offset_right = 714.0
+offset_bottom = 497.0
+theme_override_font_sizes/font_size = 50
+text = "Exit"
+
+[node name="pressR" type="AudioStreamPlayer2D" parent="ColorRect/Exit" unique_id=158814591]
+stream = ExtResource("4_oditd")
+bus = &"SFX"
+area_mask = 1
+
+[connection signal="pressed" from="ColorRect/Restart" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="ColorRect/Exit" to="." method="_on_exit_pressed"]

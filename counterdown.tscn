@@ -1,0 +1,99 @@
+[gd_scene format=3 uid="uid://rp7n37o3ac4o"]
+
+[ext_resource type="Script" uid="uid://b46ngvkpl1m3y" path="res://control.gd" id="1_pix0s"]
+
+[sub_resource type="Animation" id="Animation_5pxul"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_fedht"]
+resource_name = "disapper"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.03333333),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pkmi8"]
+_data = {
+&"RESET": SubResource("Animation_5pxul"),
+&"disapper": SubResource("Animation_fedht")
+}
+
+[node name="Countdown" type="Control" unique_id=181044494 groups=["countdown"]]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_pix0s")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=620889381]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.5)
+
+[node name="Label" type="Label" parent="." unique_id=404701292]
+layout_mode = 0
+offset_left = 540.0
+offset_top = 294.0
+offset_right = 586.0
+offset_bottom = 372.0
+theme_override_font_sizes/font_size = 70
+text = "3"
+
+[node name="Timer" type="Timer" parent="." unique_id=2136233809]
+autostart = true
+
+[node name="Animation" type="AnimationPlayer" parent="." unique_id=1967373253]
+libraries/ = SubResource("AnimationLibrary_pkmi8")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://bo3vctd4f384m"]
+
+[ext_resource type="Script" uid="uid://cy12j7i28i462" path="res://scorebroad_ai.gd" id="1_semwi"]
+
+[node name="Scorebroad ai" type="Area2D" unique_id=1814135054]
+script = ExtResource("1_semwi")
+
+[node name="Timer" type="Timer" parent="." unique_id=1998999334]
+one_shot = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

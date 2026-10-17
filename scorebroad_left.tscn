@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://5wi73vaw3com"]
+
+[ext_resource type="Script" uid="uid://cxd5gilbcenju" path="res://scorebroad_left.gd" id="1_edqh6"]
+
+[node name="Scorebroad left" type="Area2D" unique_id=1814135054]
+script = ExtResource("1_edqh6")
+
+[node name="Timer" type="Timer" parent="." unique_id=1998999334]
+one_shot = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

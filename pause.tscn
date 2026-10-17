@@ -1,0 +1,139 @@
+[gd_scene format=3 uid="uid://clw53qlu6cwup"]
+
+[ext_resource type="Texture2D" uid="uid://dsf0rofdwca11" path="res://Assest/Interface/pause.png" id="1_45vjg"]
+[ext_resource type="Theme" uid="uid://bp3nv5d62tlhq" path="res://Assest/Interface/pong.tres" id="1_aq7p1"]
+[ext_resource type="Script" uid="uid://p2voit5omm4b" path="res://pause.gd" id="2_6eyaj"]
+[ext_resource type="Shader" uid="uid://tnpk0repx140" path="res://pause.gdshader" id="3_8u653"]
+[ext_resource type="AudioStream" uid="uid://dfn3prxc4ltc7" path="res://Assest/Sound/SFX/Ui press noise.wav" id="5_05lnj"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8u653"]
+shader = ExtResource("3_8u653")
+shader_parameter/lod = 0.094000004465
+
+[sub_resource type="Animation" id="Animation_bwtow"]
+length = 0.23333333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/lod")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.094000004465]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../NinePatchRect:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_05lnj"]
+resource_name = "blur"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/lod")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.91),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.094000004465, 1.106000052535]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../NinePatchRect:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.90989715),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jg8ls"]
+_data = {
+&"RESET": SubResource("Animation_bwtow"),
+&"blur": SubResource("Animation_05lnj")
+}
+
+[node name="Pause" type="Control" unique_id=678210542]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_aq7p1")
+script = ExtResource("2_6eyaj")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1987415897]
+material = SubResource("ShaderMaterial_8u653")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=2120476041]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 336.0
+offset_top = 163.0
+offset_right = 769.0
+offset_bottom = 420.0
+texture = ExtResource("1_45vjg")
+region_rect = Rect2(20.571014, 30.301342, 103.69386, 67.059494)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="NinePatchRect" unique_id=1407087655]
+layout_mode = 0
+offset_left = 108.0
+offset_top = 53.99999
+offset_right = 320.0
+offset_bottom = 299.0
+scale = Vector2(0.9695488, 0.8892627)
+theme_override_constants/separation = 28
+
+[node name="Restart" type="Button" parent="NinePatchRect/VBoxContainer" unique_id=824386585]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Restart"
+
+[node name="pressR" type="AudioStreamPlayer2D" parent="NinePatchRect/VBoxContainer/Restart" unique_id=1576227725]
+stream = ExtResource("5_05lnj")
+bus = &"SFX"
+area_mask = 1
+
+[node name="Exit" type="Button" parent="NinePatchRect/VBoxContainer" unique_id=1048377190]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Exit"
+
+[node name="pressE" type="AudioStreamPlayer2D" parent="NinePatchRect/VBoxContainer/Exit" unique_id=37026080]
+position = Vector2(0, -91.000015)
+scale = Vector2(1, 1.0000001)
+stream = ExtResource("5_05lnj")
+bus = &"SFX"
+area_mask = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1869927666]
+root_node = NodePath("../ColorRect")
+libraries/ = SubResource("AnimationLibrary_jg8ls")
+
+[connection signal="pressed" from="NinePatchRect/VBoxContainer/Restart" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="NinePatchRect/VBoxContainer/Exit" to="." method="_on_exit_pressed"]

@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://dm03lg7yiyecr"]
+
+[ext_resource type="Texture2D" uid="uid://cdw1ci36iclrn" path="res://Assest/sprite/line.png" id="1_084u5"]
+
+[node name="line" type="StaticBody2D" unique_id=1970765713]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1959863906]
+texture = ExtResource("1_084u5")

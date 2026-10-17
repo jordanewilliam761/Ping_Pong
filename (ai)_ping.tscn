@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://dq2qohforqcvb"]
+
+[ext_resource type="Script" uid="uid://c22vkumtmkojy" path="res://(ai)_ping.gd" id="1_f0k8e"]
+[ext_resource type="Texture2D" uid="uid://bae7cbf1l4r4o" path="res://Assest/sprite/the ping.png" id="2_wq8sg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_662xe"]
+atlas = ExtResource("2_wq8sg")
+region = Rect2(0, 0, 19, 59)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_g4v7s"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_662xe")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yf5fn"]
+size = Vector2(3.4999998, 58)
+
+[node name="(AI) ping" type="CharacterBody2D" unique_id=612495592 groups=["Paddles"]]
+modulate = Color(0, 0.94577235, 0.05622696, 1)
+rotation = -3.1415927
+script = ExtResource("1_f0k8e")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1147118480]
+self_modulate = Color(0.972549, 1, 0.972549, 1)
+sprite_frames = SubResource("SpriteFrames_g4v7s")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1577568344 groups=["Paddles"]]
+position = Vector2(-2.2499998, -2.0000005)
+shape = SubResource("RectangleShape2D_yf5fn")

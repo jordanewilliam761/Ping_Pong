@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://bh2sojwy1qdrr"]
+
+[ext_resource type="Script" uid="uid://dk1u56wh5mbe5" path="res://player 1.gd" id="1_q48nb"]
+[ext_resource type="Texture2D" uid="uid://bae7cbf1l4r4o" path="res://Assest/sprite/the ping.png" id="2_2k6ik"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2mr10"]
+atlas = ExtResource("2_2k6ik")
+region = Rect2(29, 0, 17, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_g4v7s"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2mr10")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g4v7s"]
+size = Vector2(3.3208423, 58.00831)
+
+[node name="(P1) ping" type="CharacterBody2D" unique_id=612495592 groups=["Paddles"]]
+rotation = -3.1415927
+script = ExtResource("1_q48nb")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=142114451]
+position = Vector2(-21, 3.999998)
+rotation = -3.1415927
+sprite_frames = SubResource("SpriteFrames_g4v7s")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1261806473]
+position = Vector2(-19.688473, 9.002629)
+rotation = 3.12763
+shape = SubResource("RectangleShape2D_g4v7s")

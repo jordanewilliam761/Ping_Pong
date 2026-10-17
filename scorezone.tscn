@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://co0tod3nm636l"]
+
+[ext_resource type="Script" uid="uid://b1ry2iyjpji6l" path="res://scorezone.gd" id="1_er2yc"]
+
+[node name="Scorezone Right" type="Area2D" unique_id=685920587]
+script = ExtResource("1_er2yc")
+
+[node name="Timer" type="Timer" parent="." unique_id=182525418]
+one_shot = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
